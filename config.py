@@ -66,6 +66,7 @@ PIECE_TO_FOLDER = {
     "head": "head=faceskinss",
     "jbib": "jbib=jackets",
     "lowr": "lowr=pants",
+    "p_head": "head=head",
     "p_ears": "p_ears=earringss",
     "p_eyes": "p_eyes=glassess",
     "p_lwrist": "p_lwrist=watchess",
