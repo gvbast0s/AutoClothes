@@ -91,11 +91,21 @@ def generate_diff_report():
             cat_path = os.path.join(stream_path, category)
             if not os.path.isdir(cat_path):
                 continue
-            for folder in sorted(os.listdir(cat_path), key=lambda x: int(x) if x.isdigit() else x):
+            for folder in sorted(
+                os.listdir(cat_path), key=lambda x: int(x) if x.isdigit() else x
+            ):
                 final_path = os.path.join(cat_path, folder)
                 if os.path.isdir(final_path):
-                    diffs = [f for f in os.listdir(final_path) if f.endswith(".ytd") and "diff" in f.lower()]
-                    letters = [re.search(r"_diff_\d{3}_([a-z])", f).group(1) for f in diffs if re.search(r"_diff_\d{3}_([a-z])", f)]
+                    diffs = [
+                        f
+                        for f in os.listdir(final_path)
+                        if f.endswith(".ytd") and "diff" in f.lower()
+                    ]
+                    letters = [
+                        re.search(r"_diff_\d{3}_([a-z])", f).group(1)
+                        for f in diffs
+                        if re.search(r"_diff_\d{3}_([a-z])", f)
+                    ]
                     if category not in diff_data[gender_key]:
                         diff_data[gender_key][category] = {}
                     diff_data[gender_key][category][folder] = {
@@ -116,14 +126,13 @@ def generate_diff_report():
                     letter_str = ", ".join(f'"{l}"' for l in data["letters"])
                     f.write(f'            ["{folder}"] = {{\n')
                     f.write(f'                total = {data["total"]},\n')
-                    f.write(f'                letters = {{ {letter_str} }}\n')
+                    f.write(f"                letters = {{ {letter_str} }}\n")
                     f.write(f"            }},\n")
                 f.write("        },\n")
             f.write("    },\n")
         f.write("}\n")
 
     print(msg("report_generated"))
-
 
 
 def process_single_mod():
@@ -216,14 +225,23 @@ def process_single_mod():
         for f in sorted(os.listdir(DOWNLOAD_DIR)):
             if f.endswith(".ytd") and f"_{number_code}_" in f:
                 src = os.path.join(DOWNLOAD_DIR, f)
-                if "diff" in f.lower():
-                    letter = texture_letters[index]
-                    new_ytd = f"{prefix}^{piece_name}_diff_{folder_num.zfill(3)}_{letter}_uni.ytd"
-                    if DEBUG_MODE:
-                        print(f"[DEBUG] YTD → {new_ytd}")
-                    shutil.move(src, os.path.join(final_folder, new_ytd))
-                    print(msg("ytd_moved", name=new_ytd))
-                    index += 1
-                else:
-                    shutil.move(src, os.path.join(REVIEW_DIR, f))
-                    print(msg("ytd_invalid", file=f))
+                number_code = folder_num.zfill(3)
+
+
+for f in sorted(os.listdir(DOWNLOAD_DIR)):
+    if not f.endswith(".ytd"):
+        continue
+    if piece_name in f and f"_{number_code}_" in f:
+        src = os.path.join(DOWNLOAD_DIR, f)
+
+        if "diff" in f.lower():
+            letter = texture_letters[index]
+            new_ytd = f"{prefix}^{piece_name}_diff_{number_code}_{letter}_uni.ytd"
+            if DEBUG_MODE:
+                print(f"[DEBUG] YTD → {new_ytd}")
+            shutil.move(src, os.path.join(final_folder, new_ytd))
+            print(msg("ytd_moved", name=new_ytd))
+            index += 1
+        else:
+            shutil.move(src, os.path.join(REVIEW_DIR, f))
+            print(msg("ytd_invalid", file=f))
