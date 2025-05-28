@@ -178,7 +178,7 @@ def process_single_mod():
 
         # Move imagem para sumary
         image_found = None
-        for ext in [".png", ".jpg", ".jpeg"]:
+        for ext in [".png", ".jpg", ".jpeg", ".gif"]:
             for img in os.listdir(DOWNLOAD_DIR):
                 if img.lower().endswith(ext):
                     image_found = os.path.join(DOWNLOAD_DIR, img)
@@ -189,14 +189,15 @@ def process_single_mod():
         if image_found:
             sumary_path = os.path.join("sumary", gender_code, category_folder)
             os.makedirs(sumary_path, exist_ok=True)
-            new_img_name = f"{folder_num}.png"
+            original_ext = os.path.splitext(image_found)[1].lower()
+            new_img_name = f"{folder_num}{original_ext}"
             if DEBUG_MODE:
                 print(f"[DEBUG] IMG → {new_img_name}")
             shutil.copy(image_found, os.path.join(sumary_path, new_img_name))
             os.remove(image_found)
             print(msg("image_moved", name=new_img_name))
 
-        # Processa arquivos .ytd correspondentes
+
         base_name = os.path.splitext(os.path.basename(new_ydd_name))[0].lower()
         match = re.search(r"_(\d{3})_", base_name)
         number_code = match.group(1) if match else folder_num.zfill(3)
@@ -204,8 +205,8 @@ def process_single_mod():
         texture_letters = "abcdefghijklmnopqrstuvwxyz"
         index = 0
         for ytd_file in sorted(os.listdir(DOWNLOAD_DIR)):
-            if not ytd_file.endswith(".ytd") or f"_{number_code}_" not in ytd_file:
-                continue
+            if not ytd_file.lower().endswith(".ytd"):
+              continue
             src = os.path.join(DOWNLOAD_DIR, ytd_file)
 
             if "diff" in ytd_file.lower():
