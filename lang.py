@@ -103,7 +103,7 @@ Cada entrada mostra:
 - letters = letras associadas a cada textura (ex: diff_001_a)
 
 Use este relatório como base para configurar manualmente o .ymt.
-]]
+]] ---@diagnostic disable: redundant-value, undefined-field
 """,
     "en": """--[[
 📄 diff_report.lua
@@ -118,7 +118,7 @@ Each entry includes:
 - letters = suffix letters for each texture (e.g. diff_001_a)
 
 Use this report to help configure your .ymt manually.
-]]
+]] ---@diagnostic disable: redundant-value, undefined-field
 """,
     "es": """--[[
 📄 diff_report.lua
@@ -133,7 +133,7 @@ Cada entrada incluye:
 - letters = letras asociadas a cada textura (por ejemplo, diff_001_a)
 
 Utiliza este informe como base para configurar manualmente el archivo .ymt.
-]]
+]] ---@diagnostic disable: redundant-value, undefined-field
 """,
     "fr": """--[[
 📄 diff_report.lua
@@ -148,7 +148,7 @@ Chaque entrée contient :
 - letters = lettres associées à chaque texture (ex : diff_001_a)
 
 Utilisez ce rapport pour configurer manuellement le fichier .ymt.
-]]
+]] ---@diagnostic disable: redundant-value, undefined-field
 """,
     "de": """--[[
 📄 diff_report.lua
@@ -163,7 +163,7 @@ Jeder Eintrag enthält:
 - letters = Buchstaben, die jeder Textur zugeordnet sind (z. B. diff_001_a)
 
 Verwenden Sie diesen Bericht zur manuellen Konfiguration der .ymt-Datei.
-]]
+]] ---@diagnostic disable: redundant-value, undefined-field
 """,
     "it": """--[[
 📄 diff_report.lua
@@ -178,6 +178,6 @@ Ogni voce mostra:
 - letters = lettere associate a ogni texture (es: diff_001_a)
 
 Usa questo report per configurare manualmente il file .ymt.
-]]
+]] ---@diagnostic disable: redundant-value, undefined-field
 """,
 }

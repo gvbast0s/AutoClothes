@@ -52,7 +52,7 @@ REPLACE_FOLDERS = {
 DEBUG_MODE = True  # True or False
 
 # 🇧🇷 pt (Português), 🇺🇸 en (English), 🇪🇸 es (Español), 🇫🇷 fr (Français), 🇩🇪 de (Deutsch), 🇮🇹 it (Italiano)
-LANGUAGE = "en"
+LANGUAGE = "fr"
 
 # 🔠 Mapeamento de categorias / Mapping of piece names to target folders
 PIECE_TO_FOLDER = {
